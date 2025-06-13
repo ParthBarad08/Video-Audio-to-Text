@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "audio-recorder-polyfill": "^0.4.1",
+    "axios": "^1.9.0",
+    "process": "^0.11.10",
+    "simple-peer": "^9.11.1",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
+  }
+}

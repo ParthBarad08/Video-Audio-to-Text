@@ -1,0 +1,49 @@
+import React, { useState } from 'react';
+import axios from './api';
+
+function UploadAudio() {
+  const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [transcript, setTranscript] = useState('');
+
+  const handleChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleUpload = async () => {
+    if (!file) return;
+    setLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      const res = await axios.post('/transcribe', formData);
+      setTranscript(res.data.transcript || 'No transcript available.');
+      localStorage.setItem('transcript', res.data.transcript);
+      localStorage.setItem('actions', JSON.stringify(res.data.action_points || []));
+      window.dispatchEvent(new Event('storage'));
+    } catch (err) {
+      console.error('Upload failed:', err);
+      setTranscript('Error during transcription.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <h2>Upload Audio/Video for Transcription</h2>
+      <input type="file" accept="audio/*,video/*" onChange={handleChange} />
+      <button onClick={handle428Upload} disabled={loading}>
+        {loading ? 'Uploading...' : 'Upload and Transcribe'}
+      </button>
+      {transcript && (
+        <div>
+          <h3>Transcript:</h3>
+          <p>{transcript}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default Upload428Audio;

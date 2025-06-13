@@ -1,0 +1,39 @@
+flask==2.3.3
+flask-cors==4.0.0
+openai-whisper==20231117
+torch==2.1.0
+torchaudio==2.1.0
+numpy==1.24.3
+werkzeug==2.3.7
+
+
+
+# Core Flask dependencies
+Flask==2.3.3
+Flask-CORS==4.0.0
+Werkzeug==2.3.7
+
+# Audio/Video processing
+openai-whisper==20231117
+ffmpeg-python==0.2.0
+
+# Additional useful packages
+numpy==1.24.3
+torch==2.1.0
+torchaudio==2.1.0
+
+# Development and debugging
+python-dotenv==1.0.0
+gunicorn==21.2.0
+
+# Optional: Faster Whisper (uncomment if you want to use faster-whisper instead)
+# faster-whisper==0.9.0
+
+# System requirements (install separately):
+# - FFmpeg (for audio/video conversion)
+# - Python 3.8+
+
+# Installation notes:
+# 1. Install FFmpeg: https://ffmpeg.org/download.html
+# 2. For GPU support: pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu118
+# 3. For CPU only: pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
