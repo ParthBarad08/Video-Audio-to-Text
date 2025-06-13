@@ -1,4 +1,8 @@
 import React, { useState, useRef } from 'react';
+import './App.css';
+import MathBackground from './MathBackground';
+import UploadAudio from './UploadAudio';
+
 
 // Navigation Component
 const Navigation = () => {
@@ -7,7 +11,7 @@ const Navigation = () => {
       <div className="nav-container">
         <div className="nav-brand">
           <span className="nav-logo">🎙️</span>
-          <span className="nav-title">Team X Transcriber</span>
+          <span className="nav-title">Team X</span>
         </div>
         <div className="nav-links">
           <a href="#upload" className="nav-link">Upload</a>
@@ -26,8 +30,8 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-section">
-          <h4>🎙️ Team X Transcriber</h4>
-          <p>AI-powered audio and video transcription made simple</p>
+          <h4>🎙️ Team X </h4>
+          
         </div>
         <div className="footer-section">
           <h5>Features</h5>
@@ -64,33 +68,6 @@ const Footer = () => {
   );
 };
 
-// Math Background Component
-const MathBackground = () => {
-  return (
-    <div className="math-background">
-      <div className="math-symbols">
-        {Array.from({ length: 20 }, (_, i) => (
-          <span key={i} className={`math-symbol symbol-${i % 5}`}>
-            {['∑', '∫', '∂', 'π', '∞'][i % 5]}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-};
-
-// Upload Audio Component - Your original implementation
-const UploadAudio = ({ onTranscriptUpdate, onError }) => {
-  // Add your original UploadAudio component implementation here
-  // This is a placeholder - replace with your actual component
-  return (
-    <div className="upload-audio-placeholder">
-      <p>Connect your original UploadAudio component here</p>
-    </div>
-  );
-};
-
-// Main App Component
 function App() {
   const [recording, setRecording] = useState(false);
   const [transcript, setTranscript] = useState('');
@@ -119,7 +96,7 @@ function App() {
         recorder.onstop = async () => {
           const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
           setAudioURL(URL.createObjectURL(blob));
-
+          
           // Send to backend for transcription
           const formData = new FormData();
           formData.append('file', blob, 'recording.webm');
@@ -130,9 +107,9 @@ function App() {
               method: 'POST',
               body: formData,
             });
-
+            
             const result = await response.json();
-
+            
             if (result.success) {
               setTranscript(result.transcript || 'No transcript available.');
             } else {
@@ -188,10 +165,9 @@ function App() {
   };
 
   return (
-    <div className="app-container">
+    <>
       <Navigation />
       <MathBackground />
-      
       <div className="app-content">
         <header className="app-header">
           <h1>Team X Present</h1>
@@ -203,7 +179,7 @@ function App() {
         </header>
 
         {/* File Upload Section */}
-        <section id="upload" className="upload-section">
+        <section className="upload-section">
           <h2>📁 Upload Audio/Video File</h2>
           <UploadAudio onTranscriptUpdate={setTranscript} onError={setError} />
         </section>
@@ -211,7 +187,7 @@ function App() {
         <div className="divider"></div>
 
         {/* Live Recording Section */}
-        <section id="record" className="recording-section">
+        <section className="recording-section">
           <h2>🎤 Live Audio Recording</h2>
           <div className="recording-controls">
             <button
@@ -281,7 +257,7 @@ function App() {
           )}
         </section>
       </div>
-      
+
       <Footer />
       
       <style jsx>{`
@@ -735,11 +711,12 @@ function App() {
           }
         }
       `}</style>
-    </div>
+    </>
   );
 }
 
 export default App;
+
 
 
 
