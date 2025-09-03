@@ -172,7 +172,7 @@ function App() {
         <header className="app-header">
           <h1>Team X Present</h1>
           <h1>🎙️ Audio & Video to Text Converter</h1>
-          <h1> Hotal Bhageshree Naad Kariti Kaay!!</h1>
+
           <p className="app-subtitle">
             Convert your audio recordings and video files to text using AI-powered transcription
           </p>
