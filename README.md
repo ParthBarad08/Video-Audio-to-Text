@@ -1,4 +1,4 @@
-# Video_text_generator# Video_text_generator
+# Audio To Text Generator
 
 ## Features
 - Upload audio or video files for transcription and action point extraction
